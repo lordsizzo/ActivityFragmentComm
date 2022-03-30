@@ -10,7 +10,7 @@ import android.widget.Toast;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
-public class CreateToDoActivity extends AppCompatActivity implements View.OnClickListener {
+public class CreateToDoActivity extends AppCompatActivity implements View.OnClickListener, CreateCategoryFragment.CreateCategoryListener {
 
     public static final String KEY_NEW_TODO = "CreateToDoActivity_KEY_NEW_TODO";
     private Button saveButton;
@@ -48,5 +48,10 @@ public class CreateToDoActivity extends AppCompatActivity implements View.OnClic
 
     private void showToast(String please_enter_a_todo) {
         Toast.makeText(this, please_enter_a_todo, Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void addNewCreateCategory(String categoryName) {
+        Toast.makeText(this, "New Category: " + categoryName, Toast.LENGTH_SHORT).show();
     }
 }
