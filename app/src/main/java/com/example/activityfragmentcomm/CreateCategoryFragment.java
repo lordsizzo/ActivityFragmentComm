@@ -48,7 +48,9 @@ public class CreateCategoryFragment extends Fragment {
 
         btn_create_category.setOnClickListener((__) -> {
                 String categoryName = et_category_name.getText().toString();
-                listener.addNewCreateCategory(categoryName);
+                if (!categoryName.isEmpty()) {
+                    listener.addNewCreateCategory(categoryName);
+                }
         });
     }
 }
