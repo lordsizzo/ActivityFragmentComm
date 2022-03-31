@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
@@ -11,10 +12,14 @@ import android.widget.Toast;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class MainActivity extends AppCompatActivity {
 
     public static final int OPEN_CODE_ACTIVITY = 1;
-    private ArrayAdapter<String> adapter;
+    private static final String TAG = "MainActivity";
+    private CustomAdapter adapter;
     private ListView lvDisplayToDo;
     private FloatingActionButton createToDo;
     @Override
@@ -27,7 +32,7 @@ public class MainActivity extends AppCompatActivity {
     private void initViews() {
         createToDo = findViewById(R.id.fabCreateTodo);
         lvDisplayToDo = findViewById(R.id.listView);
-        adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1);
+        //adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1);
         lvDisplayToDo.setAdapter(adapter);
         createToDo.setOnClickListener(this::onClickFab);
     }
@@ -45,12 +50,22 @@ public class MainActivity extends AppCompatActivity {
         if(requestCode == OPEN_CODE_ACTIVITY){
             if (data != null) {
                 String todo = data.getStringExtra(CreateToDoActivity.KEY_NEW_TODO);
-                updateAdapter(todo);
+                String category = data.getStringExtra(CreateToDoActivity.KEY_NEW_CAT);
+                updateAdapter(todo, category);
             }
         }
     }
 
-    private void updateAdapter(String todo) {
-        adapter.add(todo);
+    private void updateAdapter(String todo, String category) {
+        TodoTask todoList = new TodoTask();
+       todoList.setTodoName(todo);
+       todoList.setTodoCategory(category);
+
+        List<TodoTask> todoList1 = new ArrayList<>();
+        todoList1.add(todoList);
+        adapter = new CustomAdapter(this, todoList1);
+        lvDisplayToDo.setAdapter(adapter);
+        Log.d(TAG, "updateAdapter: "+todoList.getTodoName()+" - "+todoList.getTodoCategory());
+        //adapter.add(todoList);
     }
 }

@@ -19,7 +19,6 @@ public class CreateCategoryFragment extends Fragment {
     public interface CreateCategoryListener {
         void addNewCreateCategory(String categoryName);
     }
-
     private CreateCategoryListener listener;
 
     @Override
@@ -35,7 +34,6 @@ public class CreateCategoryFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment.
         final View rootView = inflater.inflate(R.layout.create_fragment_category,
                 container, false);
         initViews(rootView);

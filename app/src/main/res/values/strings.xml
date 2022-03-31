@@ -2,4 +2,11 @@
     <string name="app_name">ActivityFragmentComm</string>
     <string name="btn_create">Create</string>
     <string name="create_new_category">Create new category</string>
+
+    <string-array name="default_category_names">
+        <item>Home</item>
+        <item>School</item>
+        <item>Mentoring</item>
+    </string-array>
+
 </resources>
