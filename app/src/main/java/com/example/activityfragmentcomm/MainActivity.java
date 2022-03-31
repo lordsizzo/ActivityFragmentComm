@@ -22,6 +22,7 @@ public class MainActivity extends AppCompatActivity {
     private CustomAdapter adapter;
     private ListView lvDisplayToDo;
     private FloatingActionButton createToDo;
+    private List<TodoTask> todoList1 = new ArrayList<>();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -61,7 +62,6 @@ public class MainActivity extends AppCompatActivity {
        todoList.setTodoName(todo);
        todoList.setTodoCategory(category);
 
-        List<TodoTask> todoList1 = new ArrayList<>();
         todoList1.add(todoList);
         adapter = new CustomAdapter(this, todoList1);
         lvDisplayToDo.setAdapter(adapter);
